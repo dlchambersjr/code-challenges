@@ -145,6 +145,10 @@ const removeElements = (input, callback) => {
 
 const removeWithForEach = (input, callback) => {
   // Solution code here...
+  input.forEach(function (value) {
+    callback(value, input);
+  });
+  return input;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -255,12 +259,12 @@ describe('Testing challenge 6', () => {
   });
 });
 
-// describe('Testing challenge 7', () => {
-//   test('It should remove three elements from the array', () => {
-//     expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne)).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
-//     expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne).length).toStrictEqual(7);
-//   });
-// });
+describe('Testing challenge 7', () => {
+  test('It should remove three elements from the array', () => {
+    expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne)).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne).length).toStrictEqual(7);
+  });
+});
 
 // describe('Testing challenge 8', () => {
 //   test('It should remove three elements from the array', () => {
