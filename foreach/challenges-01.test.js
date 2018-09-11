@@ -124,9 +124,8 @@ const addNumbers = (num, arr, times, callback) => {
 const removeOne = (num, input) => {
   // Solution code here...
   if (num % 3 === 2) {
-    input = input.pop();
+    return input.pop();
   }
-  return input;
 }
 
 const removeElements = (input, callback) => {
