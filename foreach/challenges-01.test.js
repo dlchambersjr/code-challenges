@@ -192,6 +192,13 @@ const removeWithAnon = (input) => {
 
 const createList = (availableItems) => {
   // Solution code here...
+  let myList = [];
+  availableItems.forEach((element, index) => {
+    if (element.available) {
+      myList.push(element.name);
+    }
+  });
+  return myList;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -210,6 +217,25 @@ const createList = (availableItems) => {
 
 const fizzbuzz = (arr) => {
   // Solution code here...
+  let outputArray = [];
+  arr.forEach((element) => {
+    if (element % 3 === 0 && element % 5 === 0) {
+      outputArray.push('Fizz Buzz');
+    }
+    else {
+      if (element % 3 === 0) {
+        outputArray.push('Fizz');
+      }
+      else {
+        if (element % 5 === 0) {
+          outputArray.push('Buzz');
+        }
+        else outputArray.push(element);
+      }
+    }
+  });
+
+  return outputArray;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -279,20 +305,20 @@ describe('Testing challenge 8', () => {
   });
 });
 
-// describe('Testing challenge 9', () => {
-//   const inventory = [{ name: 'apples', available: true }, { name: 'pears', available: true }, { name: 'oranges', available: false }, { name: 'bananas', available: true }, { name: 'blueberries', available: false }];
+describe('Testing challenge 9', () => {
+  const inventory = [{ name: 'apples', available: true }, { name: 'pears', available: true }, { name: 'oranges', available: false }, { name: 'bananas', available: true }, { name: 'blueberries', available: false }];
 
-//   test('It should only add the available items to the list', () => {
-//     expect(createList(inventory)).toStrictEqual(['apples', 'pears', 'bananas']);
-//     expect(createList(inventory).length).toStrictEqual(3);
-//   });
-// });
+  test('It should only add the available items to the list', () => {
+    expect(createList(inventory)).toStrictEqual(['apples', 'pears', 'bananas']);
+    expect(createList(inventory).length).toStrictEqual(3);
+  });
+});
 
-// describe('Testing challenge 10', () => {
-//   const inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+describe('Testing challenge 10', () => {
+  const inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
-//   test('It should print out messages or numbers', () => {
-//     expect(fizzbuzz(inputs)).toStrictEqual([1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'Fizz Buzz', 16]);
-//     expect(fizzbuzz(inputs).length).toStrictEqual(16);
-//   });
-// });
+  test('It should print out messages or numbers', () => {
+    expect(fizzbuzz(inputs)).toStrictEqual([1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'Fizz Buzz', 16]);
+    expect(fizzbuzz(inputs).length).toStrictEqual(16);
+  });
+});
