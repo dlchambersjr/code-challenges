@@ -164,6 +164,12 @@ const removeWithForEach = (input, callback) => {
 
 const removeWithAnon = (input) => {
   // Solution code here...
+  input.forEach((element, index, input) => {
+    if (element % 3 === 2) {
+      input = input.pop();
+    }
+  });
+  return input;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -266,12 +272,12 @@ describe('Testing challenge 7', () => {
   });
 });
 
-// describe('Testing challenge 8', () => {
-//   test('It should remove three elements from the array', () => {
-//     expect(removeWithAnon([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
-//     expect(removeWithAnon([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).length).toStrictEqual(7);
-//   });
-// });
+describe('Testing challenge 8', () => {
+  test('It should remove three elements from the array', () => {
+    expect(removeWithAnon([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(removeWithAnon([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).length).toStrictEqual(7);
+  });
+});
 
 // describe('Testing challenge 9', () => {
 //   const inventory = [{ name: 'apples', available: true }, { name: 'pears', available: true }, { name: 'oranges', available: false }, { name: 'bananas', available: true }, { name: 'blueberries', available: false }];
