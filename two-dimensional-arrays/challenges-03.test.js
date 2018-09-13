@@ -319,6 +319,28 @@ const lowestWeeklyAverage = (weather) => {
 
 const excel = (str) => {
     // Solution code here...
+
+    // Here's an algorithm you can use:
+    //
+    // create an empty array to store the sum value of each row
+
+    const numberArray = [];
+
+    // split the input string on newline "\n" characters
+
+
+    //
+    // use a for loop to iterate over each row
+    //   initialize a variable to store the row sum as zero
+    //   split the row string on commas "," to get an array of column values
+    //   use a for loop to iterate over each column value
+    //     use parseInt() to convert each column string to a number
+    //     add the number to the total for the row
+    //   push the row total onto the very first array
+    // return the array with all the row sums
+
+
+
 }
 
 
@@ -394,9 +416,9 @@ describe('Testing challenge 4', () => {
     test('It should return the number 14', () => {
         expect(findFourteen(nestedArray)).toStrictEqual(14);
     });
-    // test('It should also work for other input arrays', () => {
-    //     expect(findFourteen([[], [], [[0, 1, 2]]])).toStrictEqual(1);
-    // })
+    test('It should also work for other input arrays', () => {
+        expect(findFourteen([[], [], [[0, 1, 2]]])).toStrictEqual(1);
+    })
 });
 
 // FIXME:  It would appear that the array being passed in part 2 of the test doesn't contain enough information to process based on a requirment for treats.
@@ -405,9 +427,9 @@ describe('Testing challenge 5', () => {
     test('It should return the number 24', () => {
         expect(howManyTreats(errands)).toStrictEqual(24);
     });
-    // test('It should also work for other arrays of objects', () => {
-    //     expect(howManyTreats([0, 0, { items: [0, { quantity: 7 }] }])).toStrictEqual(7);
-    // })
+    test('It should also work for other arrays of objects', () => {
+        expect(howManyTreats([0, 0, { items: [0, { quantity: 7 }] }])).toStrictEqual(7);
+    })
 });
 
 describe('Testing challenge 6', () => {
@@ -455,12 +477,12 @@ describe('Testing challenge 9', () => {
     });
 });
 
-// describe('Testing challenge 10', () => {
-//   test('It should return the total count for each row', () => {
-//     let result = excel('1,1,1\n4,4,4\n9,9,9');
-//     expect(result.length).toStrictEqual(3);
-//     expect(result[0]).toStrictEqual(3);
-//     expect(result[1]).toStrictEqual(12);
-//     expect(result[2]).toStrictEqual(27);
-//   });
-// });
+describe('Testing challenge 10', () => {
+    test('It should return the total count for each row', () => {
+        let result = excel('1,1,1\n4,4,4\n9,9,9');
+        expect(result.length).toStrictEqual(3);
+        expect(result[0]).toStrictEqual(3);
+        expect(result[1]).toStrictEqual(12);
+        expect(result[2]).toStrictEqual(27);
+    });
+});
