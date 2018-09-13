@@ -203,6 +203,16 @@ const battleship = (board, row, col) => {
 
 const calculateProduct = (numbers) => {
     // Solution code here...
+
+    let result = 1;
+
+    numbers.forEach((value, index) => {
+        for (let i = 0; i < value.length; i++) {
+            result *= value[i];
+        }
+    });
+
+    return result;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -224,6 +234,21 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
     // Solution code here...
+
+    let averageTemp = 0;
+    let totalDays = 0;
+
+    weather.forEach((value, index) => {
+        for (let i = 0; i < value.length; i++) {
+            totalDays++;
+            averageTemp += value[i];
+        }
+    })
+
+    averageTemp = averageTemp / totalDays;
+
+    return averageTemp;
+
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -246,6 +271,25 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
     // Solution code here...
+    let averageTemp = 0;
+    let totalDays = 0;
+    let lowestWeek = 200;
+
+    weather.forEach((value, index) => {
+        for (let i = 0; i < value.length; i++) {
+            totalDays++;
+            averageTemp += value[i];
+        }
+
+        averageTemp = averageTemp / totalDays;
+
+        if (averageTemp < lowestWeek) {
+            lowestWeek = averageTemp;
+        }
+        averageTemp = 0
+        totalDays = 0;
+    })
+    return lowestWeek;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -385,31 +429,31 @@ describe('Testing challenge 6', () => {
     });
 });
 
-// describe('Testing challenge 7', () => {
-//   test('It should multiply all the numbers together', () => {
-//     expect(calculateProduct([[1,2], [3,4], [5,6]])).toStrictEqual(720);
-//   });
+describe('Testing challenge 7', () => {
+    test('It should multiply all the numbers together', () => {
+        expect(calculateProduct([[1, 2], [3, 4], [5, 6]])).toStrictEqual(720);
+    });
 
-//   test('It should return zero if there are any zeroes in the data', () => {
-//     expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
-//   });
-//   test('It should work even if some of the arrays contain no numbers', () => {
-//     expect(calculateProduct([[1,2], [], [3,4,5]])).toStrictEqual(120);
-//   });
-// });
+    test('It should return zero if there are any zeroes in the data', () => {
+        expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
+    });
+    test('It should work even if some of the arrays contain no numbers', () => {
+        expect(calculateProduct([[1, 2], [], [3, 4, 5]])).toStrictEqual(120);
+    });
+});
 
-// describe('Testing challenge 8', () => {
-//   test('It should calculate and return the average temperature of the data set', () => {
-//     expect(averageDailyTemperature(weeklyTemperatures)).toStrictEqual(60.25);
-//   });
-// });
+describe('Testing challenge 8', () => {
+    test('It should calculate and return the average temperature of the data set', () => {
+        expect(averageDailyTemperature(weeklyTemperatures)).toStrictEqual(60.25);
+    });
+});
 
-// describe('Testing challenge 9', () => {
-//   test('It should return the lowest weekly average temperature within the data set', () => {
-//     expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
-//     expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
-//   });
-// });
+describe('Testing challenge 9', () => {
+    test('It should return the lowest weekly average temperature within the data set', () => {
+        expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
+        expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
+    });
+});
 
 // describe('Testing challenge 10', () => {
 //   test('It should return the total count for each row', () => {
