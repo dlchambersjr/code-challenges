@@ -65,7 +65,7 @@ let characters = [
     house: 'Stark'
   },
   {
-    name: 'Jon',
+    name: 'Jon S.',
     spouse: null,
     children: [],
     house: 'Snow'
@@ -113,24 +113,14 @@ hasChildrenValues(characters, 'Eddard') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
+  let kids = false;
   arr.forEach((name) => {
     if (name.name === character) {
-      return (Object.values(name.children).length > 0);
+      kids = (name.children.length > 0);
+      console.log('before return', kids);
     }
   })
-}
-
-const hasChildrenValues = (arr, character) => {
-  // Solution code here...
-  arr.forEach((name) => {
-    if (name.name === character) {
-      let newArray = Object.values(name.children);
-      console.log(newArray.length);
-      if (newArray.length > 0) {
-        return true;
-      } else return false;
-    }
-  })
+  return kids;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -143,8 +133,15 @@ The input and output of this function are the same as the input and output from 
 
 const hasChildrenEntries = (arr, character) => {
   // Solution code here...
+  let kids = false;
+  arr.forEach((name) => {
+    if (name.name === character) {
+      kids = (name.children.length > 0);
+      console.log('before return', kids);
+    }
+  })
+  return kids;
 }
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
@@ -225,19 +222,20 @@ describe('Testing challenge 4', () => {
   });
 });
 
-// describe('Testing challenge 5', () => {
-//   test('It should return true for characters that have children', () => {
-//     expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
-//   });
+// TODO: Added "S." so test would run - see slack convo in classroom.
+describe('Testing challenge 5', () => {
+  test('It should return true for characters that have children', () => {
+    expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
+  });
 
-//   test('It should return false to characters who do not have children', () => {
-//     expect(hasChildrenEntries(characters, 'Jon')).toBeFalsy();
-//   });
-// });
+  test('It should return false to characters who do not have children', () => {
+    expect(hasChildrenEntries(characters, 'Jon S.')).toBeFalsy();
+  });
+});
 
 // describe('Testing challenge 6', () => {
 //   test('It should return an object for each house containing the name and size', () => {
-//     expect(houseSize(characters)).toStrictEqual([ { house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, { house: 'Lannister', members: 5 }, { house: 'Targaryen', members: 5 }, { house: 'Tyrell', members: 4 }, { house: 'Stark', members: 2 }, { house: 'Snow', members: 1 } ]);
+//     expect(houseSize(characters)).toStrictEqual([{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, { house: 'Lannister', members: 5 }, { house: 'Targaryen', members: 5 }, { house: 'Tyrell', members: 4 }, { house: 'Stark', members: 2 }, { house: 'Snow', members: 1 }]);
 //     expect(houseSize(characters).length).toStrictEqual(7);
 //   });
 // });
