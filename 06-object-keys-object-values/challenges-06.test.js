@@ -160,8 +160,8 @@ const houseSize = (arr) => {
     first = Object.entries(name)[0][1];
     spouse = Object.entries(name)[1][1];
     console.log(first, spouse, name.children);
-    if (first !== 'null') { memberSize++; }
-    if (spouse !== 'null') { memberSize++ }
+    if (first !== null) { memberSize++; }
+    if (spouse !== null) { memberSize++ }
     memberSize += name.children.length;
     console.log(name.children.length);
     console.log(memberSize);
@@ -180,82 +180,81 @@ const houseSize = (arr) => {
 
 
   return;
-}
 
-/* ------------------------------------------------------------------------------------------------
-CHALLENGE 7
+  /* ------------------------------------------------------------------------------------------------
+  CHALLENGE 7
+  
+  As fans are well aware, "When you play the game of thrones, you win or you die. There is no middle ground."
+  
+  We will assume that Alerie Tyrell is deceased. She missed her daughter's wedding. Twice.
+  
+  Write a function named houseSurvivors. You may modify your houseSize function from challenge 6 to use as the basis of this function.
+  
+  This function should create an object for each house containing the name of the house and the number of members. If the spouse is deceased, do not include him/her in the total number of family members.
+  
+  All of these objects should be added to an array named "survivors". Return the "survivors" array from the function.
+  
+  For example: [ { house: 'Stark', members: 6 }, { house: 'Arryn', members: 2 }, ... ].
+  ------------------------------------------------------------------------------------------------*/
 
-As fans are well aware, "When you play the game of thrones, you win or you die. There is no middle ground."
+  const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 
-We will assume that Alerie Tyrell is deceased. She missed her daughter's wedding. Twice.
+  const houseSurvivors = (arr) => {
+    const survivors = [];
+    // Solution code here...
+    return survivors;
+  }
 
-Write a function named houseSurvivors. You may modify your houseSize function from challenge 6 to use as the basis of this function.
+  /* ------------------------------------------------------------------------------------------------
+  TESTS
+  
+  All the code below will verify that your functions are working to solve the challenges.
+  
+  DO NOT CHANGE any of the below code.
+  
+  Run your tests from the console: jest challenges-06.test.js
+  
+  ------------------------------------------------------------------------------------------------*/
 
-This function should create an object for each house containing the name of the house and the number of members. If the spouse is deceased, do not include him/her in the total number of family members.
-
-All of these objects should be added to an array named "survivors". Return the "survivors" array from the function.
-
-For example: [ { house: 'Stark', members: 6 }, { house: 'Arryn', members: 2 }, ... ].
-------------------------------------------------------------------------------------------------*/
-
-const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
-
-const houseSurvivors = (arr) => {
-  const survivors = [];
-  // Solution code here...
-  return survivors;
-}
-
-/* ------------------------------------------------------------------------------------------------
-TESTS
-
-All the code below will verify that your functions are working to solve the challenges.
-
-DO NOT CHANGE any of the below code.
-
-Run your tests from the console: jest challenges-06.test.js
-
-------------------------------------------------------------------------------------------------*/
-
-describe('Testing challenge 1', () => {
-  test('It should return the keys from an object', () => {
-    expect(getCourseKeys(courseInfo)).toStrictEqual(['name', 'duration', 'topics', 'finalExam']);
-  });
-});
-
-describe('Testing challenge 2', () => {
-  test('something specific', () => {
-    expect(totalCharacters(characters)).toStrictEqual(7);
-  });
-});
-
-describe('Testing challenge 3', () => {
-  test('something specific', () => {
-    expect(getHouses(characters)).toStrictEqual(['Stark', 'Arryn', 'Lannister', 'Targaryen', 'Tyrell', 'Stark', 'Snow']);
-    expect(getHouses(characters).length).toStrictEqual(7);
-  });
-});
-
-describe('Testing challenge 4', () => {
-  test('It should return true for characters that have children', () => {
-    expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
+  describe('Testing challenge 1', () => {
+    test('It should return the keys from an object', () => {
+      expect(getCourseKeys(courseInfo)).toStrictEqual(['name', 'duration', 'topics', 'finalExam']);
+    });
   });
 
-  test('It should return false to characters who do not have children', () => {
-    expect(hasChildrenValues(characters, 'Sansa')).toBeFalsy();
-  });
-});
-
-// TODO: Added "S." so test would run - see slack convo in classroom.
-describe('Testing challenge 5', () => {
-  test('It should return true for characters that have children', () => {
-    expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
+  describe('Testing challenge 2', () => {
+    test('something specific', () => {
+      expect(totalCharacters(characters)).toStrictEqual(7);
+    });
   });
 
-  test('It should return false to characters who do not have children', () => {
-    expect(hasChildrenEntries(characters, 'Jon S.')).toBeFalsy();
+  describe('Testing challenge 3', () => {
+    test('something specific', () => {
+      expect(getHouses(characters)).toStrictEqual(['Stark', 'Arryn', 'Lannister', 'Targaryen', 'Tyrell', 'Stark', 'Snow']);
+      expect(getHouses(characters).length).toStrictEqual(7);
+    });
   });
-});
+
+  describe('Testing challenge 4', () => {
+    test('It should return true for characters that have children', () => {
+      expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
+    });
+
+    test('It should return false to characters who do not have children', () => {
+      expect(hasChildrenValues(characters, 'Sansa')).toBeFalsy();
+    });
+  });
+
+  // TODO: Added "S." so test would run - see slack convo in classroom.
+  describe('Testing challenge 5', () => {
+    test('It should return true for characters that have children', () => {
+      expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
+    });
+
+    test('It should return false to characters who do not have children', () => {
+      expect(hasChildrenEntries(characters, 'Jon S.')).toBeFalsy();
+    });
+  });
 
 // describe('Testing challenge 6', () => {
 //   test('It should return an object for each house containing the name and size', () => {
