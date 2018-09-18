@@ -90,8 +90,8 @@ Write a function named getHouses that returns a new array containing the names o
 ------------------------------------------------------------------------------------------------*/
 
 const getHouses = (arr) => {
-  let houses = [];
   // Solution code here...
+  let houses = [];
   arr.forEach((name) => {
     houses.push(name.house);
   })
@@ -117,7 +117,6 @@ const hasChildrenValues = (arr, character) => {
   arr.forEach((name) => {
     if (name.name === character) {
       kids = (name.children.length > 0);
-      console.log('before return', kids);
     }
   })
   return kids;
@@ -137,7 +136,6 @@ const hasChildrenEntries = (arr, character) => {
   arr.forEach((name) => {
     if (name.name === character) {
       kids = (name.children.length > 0);
-      console.log('before return', kids);
     }
   })
   return kids;
@@ -155,7 +153,33 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 const houseSize = (arr) => {
   const sizes = [];
   // Solution code here...
-  return sizes;
+  let memberSize = 0;
+  let first = '';
+  let spouse = '';
+  arr.forEach((name) => {
+    first = Object.entries(name)[0][1];
+    spouse = Object.entries(name)[1][1];
+    console.log(first, spouse, name.children);
+    if (first !== 'null') { memberSize++; }
+    if (spouse !== 'null') { memberSize++ }
+    memberSize += name.children.length;
+    console.log(name.children.length);
+    console.log(memberSize);
+    memberSize = 0
+    // console.log(Object.values(name).length);
+    // console.log (memberSize);
+    // console.log(Object.entries(4), `members: ${memberSize}`);
+    // console.log (sizes);
+    // memberSize = 0;
+
+  })
+
+
+
+
+
+
+  return;
 }
 
 /* ------------------------------------------------------------------------------------------------
