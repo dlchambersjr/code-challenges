@@ -172,17 +172,25 @@ const snorlaxStats = {
 
 const extractStats = (stats) => {
   // Solution code here...
-};
+  let results = [];
+  results = stats.map(value => results = {
+    name: value.stat.name,
+    total: (value.effort + value.baseStat)
+  })
+
+  console.log(results);
+  return results;
+}
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
-
+ 
 All the code below will verify that your functions are working to solve the challenges.
-
+ 
 DO NOT CHANGE any of the below code.
-
+ 
 Run your tests from the console: jest challenges-07.test.js
-
+ 
 ------------------------------------------------------------------------------------------------*/
 
 describe('Testing challenge 1', () => {
@@ -254,13 +262,13 @@ describe('Testing challenge 6', () => {
   });
 });
 
-// describe('Testing challenge 7', () => {
-//   test('It should return an array containing objects with name and total values', () => {
-//     expect(extractStats(snorlaxStats.stats)).toStrictEqual([
-//       { name: 'speed', total: 35, },
-//       { name: 'special-defense', total: 112, },
-//       { name: 'special-attack', total: 74, },
-//     ]);
-//     expect(extractStats(snorlaxStats.stats).length).toStrictEqual(3);
-//   });
-// });
+describe('Testing challenge 7', () => {
+  test('It should return an array containing objects with name and total values', () => {
+    expect(extractStats(snorlaxStats.stats)).toStrictEqual([
+      { name: 'speed', total: 35, },
+      { name: 'special-defense', total: 112, },
+      { name: 'special-attack', total: 74, },
+    ]);
+    expect(extractStats(snorlaxStats.stats).length).toStrictEqual(3);
+  });
+});
