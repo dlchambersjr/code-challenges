@@ -42,6 +42,7 @@ Write a function named mapTwoToThe that produces the same output as your forLoop
 
 const mapTwoToThe = (input) => {
   // Solution code here...
+  return input.map(x => Math.pow(2, x));
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -195,16 +196,16 @@ describe('Testing challenge 2', () => {
   });
 });
 
-// describe('Testing challenge 3', () => {
-//   test('It should return two raised to the power of the integer', () => {
-//     expect(mapTwoToThe([0, 4, 5])).toStrictEqual([1, 16, 32]);
-//     expect(mapTwoToThe([0, 4, 5]).length).toStrictEqual(3);
-//   });
+describe('Testing challenge 3', () => {
+  test('It should return two raised to the power of the integer', () => {
+    expect(mapTwoToThe([0, 4, 5])).toStrictEqual([1, 16, 32]);
+    expect(mapTwoToThe([0, 4, 5]).length).toStrictEqual(3);
+  });
 
-//   test('It should return decimals if the integer is negative', () => {
-//     expect(mapTwoToThe([-1, -2, -3])).toStrictEqual([0.5, 0.25, 0.125]);
-//   });
-// });
+  test('It should return decimals if the integer is negative', () => {
+    expect(mapTwoToThe([-1, -2, -3])).toStrictEqual([0.5, 0.25, 0.125]);
+  });
+});
 
 // describe('Testing challenge 4', () => {
 //   test('It should return an array containing the character code for each letter', () => {
