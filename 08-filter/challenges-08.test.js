@@ -93,7 +93,7 @@ const notInFirstArray = (forbiddenValues, input) => {
     // Solution code here...
 
     let tempArray = input.filter(stat => stat.baseStat > minBaseStat)
-    return tempArray.forEach(ele => () = ele.name);
+    return tempArray.forEach(ele => ele.name);
   };
 
   /*------------------------------------------------------------------------------------------------
