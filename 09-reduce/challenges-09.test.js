@@ -115,9 +115,10 @@ const snorlaxData = {
   weight: 4600,
 };
 
-const extractStat = (statName, input) => {
-  // Solution code here...
-};
+const extractStat = (statName, input) => input.reduce((acc, val) => (val.stat.name === statName) ? val : acc, {});
+// Solution code here...
+
+
 
 /*------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -259,11 +260,11 @@ describe('Testing challenge 2', () => {
   });
 });
 
-// describe('Testing challenge 3', () => {
-//   test('It should return any stats that match the input', () => {
-//     expect(extractStat('speed', snorlaxData.stats)).toStrictEqual({ stat: { url: 'https://pokeapi.co/api/v2/stat/6/', name: 'speed' }, effort: 5, baseStat: 30 });
-//   });
-// });
+describe('Testing challenge 3', () => {
+  test('It should return any stats that match the input', () => {
+    expect(extractStat('speed', snorlaxData.stats)).toStrictEqual({ stat: { url: 'https://pokeapi.co/api/v2/stat/6/', name: 'speed' }, effort: 5, baseStat: 30 });
+  });
+});
 
 // describe('Testing challenge 4', () => {
 //   test('It should return the average of the numbers in the array', () => {
