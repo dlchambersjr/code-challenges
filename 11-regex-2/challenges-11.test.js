@@ -23,6 +23,8 @@ For example, findTagNames(['<h1>Hello, world!</h1>', '<p>Welcome to my site</p>'
 
 const findTagNames = elements => {
   // Solution code here...
+  
+//FIXME:
 
   return elements.map(tag => tag.match(/\/\w+/));
 
