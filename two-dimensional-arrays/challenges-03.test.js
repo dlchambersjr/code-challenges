@@ -485,4 +485,3 @@ describe('Testing challenge 10', () => {
         expect(result[1]).toStrictEqual(12);
         expect(result[2]).toStrictEqual(27);
     });
-});
