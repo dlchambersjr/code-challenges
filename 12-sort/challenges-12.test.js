@@ -106,11 +106,15 @@ const people = [
   new Person('Stan', 'Seattle', 67),
 ];
 
-//FIXME:
 const sortPeople = (people) => {
   // Solution code here...
-  return people.sort((a, b) => a.lastName - b.lastName);
 
+  return people.sort((a, b) => {
+    let a2 = a.lastName.toUpperCase();
+    let b2 = b.lastName.toUpperCase();
+    return (a2 < b2) ? -1 : (a2 > b2) ? 1 : 0;
+
+  })
 };
 
 /*------------------------------------------------------------------------------------------------
@@ -123,9 +127,37 @@ If two people share the same last name, alphabetize on their first name. If two 
 //FIXME:
 const sortPeopleBetter = (people) => {
   // Solution code here...
-  return people.sort((a, b) => (a.lastName.toLowerCase === b.lastName.toLowerCase && a.firstName === b.firstName) ? a.age - b.age
-    : (a.lastName.toLowerCase === b.lastName.toLowerCase) ? a.firstName - b.firstName
-      : a.lastName - b.lastName);
+  return people.sort((a, b) => {
+
+    let aLast = a.lastName.toLowerCase();
+    let bLast = b.lastName.toLowerCase();
+
+    let aFirst = a.firstName.toLowerCase();
+    let bFirst = b.firstName.toLowerCase();
+
+    console.log(aLast === bLast, aFirst === bFirst
+
+    if (aLast === bLast && aFirst === bFirst) {
+      return a.age - b.age;
+    }
+
+    if (aLast === bLast) {
+      if (aFirst < bFirst) {
+        return -1;
+      } else {
+        if (aFirst > bFirst) {
+          return 1
+        } else return 0;
+      }
+    }
+
+    return (aLast < bLast) ? -1 : (aLast < bLast) ? 1 : 0
+
+  })
+
+  // (a.lastName.toLowerCase() === b.lastName.toLowerCase() && a.firstName === b.firstName) ? a.age - b.age
+  // : (a.lastName.toLowerCase() === b.lastName.toLowerCase()) ? a.firstName - b.firstName
+  //   : a.lastName - b.lastName);
 
 };
 
@@ -151,8 +183,20 @@ const meetings = [
   new Meeting('Friday', '1200', '1345'),
 ];
 
+//FIXME:
 const sortMeetingsByDay = (meetings) => {
   // Solution code here...
+
+  return meetings.sort((a, b) => {
+    let a2 = a.dayOfWeek.toUpperCase();
+    let b2 = b.dayOfWeek.toUpperCase();
+
+    console.log(a2, b2);
+
+    return (a2 < b2) ? -1 : (a2 > b2) ? 1 : 0;
+
+  })
+
 };
 
 /*------------------------------------------------------------------------------------------------
@@ -275,25 +319,25 @@ describe('Testing challenge 8', () => {
   });
 });
 
-// describe('Testing challenge 9', () => {
-//   test('It should sort meetings by the day on which they happen', () => {
-//     const sortedMeetings = sortMeetingsByDay(meetings);
-//     expect(sortedMeetings.slice(0,2)).toEqual(expect.arrayContaining([new Meeting('Monday', '0900', '0945'), new Meeting('Monday', '0900', '1000')]));
-//     expect(sortedMeetings[2]).toStrictEqual(new Meeting('Tuesday', '1145', '1315'));
-//     expect(sortedMeetings.slice(3,5)).toEqual(expect.arrayContaining([new Meeting('Wednesday', '0930', '1000'), new Meeting('Wednesday', '1300', '1500')]));
-//     expect(sortedMeetings[5]).toStrictEqual(new Meeting('Friday', '1200', '1345'));
-//   });
-// });
+describe('Testing challenge 9', () => {
+  test('It should sort meetings by the day on which they happen', () => {
+    const sortedMeetings = sortMeetingsByDay(meetings);
+    expect(sortedMeetings.slice(0, 2)).toEqual(expect.arrayContaining([new Meeting('Monday', '0900', '0945'), new Meeting('Monday', '0900', '1000')]));
+    expect(sortedMeetings[2]).toStrictEqual(new Meeting('Tuesday', '1145', '1315'));
+    expect(sortedMeetings.slice(3, 5)).toEqual(expect.arrayContaining([new Meeting('Wednesday', '0930', '1000'), new Meeting('Wednesday', '1300', '1500')]));
+    expect(sortedMeetings[5]).toStrictEqual(new Meeting('Friday', '1200', '1345'));
+  });
+});
 
-// describe('Testing challenge 10', () => {
-//   test('It should sort meetings by when they happen', () => {
-//     expect(sortSchedule(meetings)).toStrictEqual([
-//       new Meeting('Monday', '0900', '0945'),
-//       new Meeting('Monday', '0900', '1000'),
-//       new Meeting('Tuesday', '1145', '1315'),
-//       new Meeting('Wednesday', '0930', '1000'),
-//       new Meeting('Wednesday', '1300', '1500'),
-//       new Meeting('Friday', '1200', '1345'),
-//     ]);
-//   });
-// });
+describe('Testing challenge 10', () => {
+  test('It should sort meetings by when they happen', () => {
+    expect(sortSchedule(meetings)).toStrictEqual([
+      new Meeting('Monday', '0900', '0945'),
+      new Meeting('Monday', '0900', '1000'),
+      new Meeting('Tuesday', '1145', '1315'),
+      new Meeting('Wednesday', '0930', '1000'),
+      new Meeting('Wednesday', '1300', '1500'),
+      new Meeting('Friday', '1200', '1345'),
+    ]);
+  });
+});
