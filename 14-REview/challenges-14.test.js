@@ -14,9 +14,7 @@ const toTitleCase = (strs) => {
 
   return strs.map(value => {
     let upper = value.charAt(0).toUpperCase();
-    console.log(upper);
     let rest = value.slice(1, value.length);
-    console.log(rest);
     return upper + rest;
   })
 
@@ -29,7 +27,7 @@ returns the names of the characters whose mass is greater than Luke's.
 The names should be combined into a single string with each character name separated by a dash.
 For example, "Lando Calrisian - Boba Fett - Princess Amygdala".
 ------------------------------------------------------------------------------------------------*/
-
+//FIXME:
 let starWarsData = [{
   name: 'Luke Skywalker',
   height: '172',
@@ -89,10 +87,21 @@ let starWarsData = [{
   eye_color: 'none',
   birth_year: '27BBY',
   gender: 'n/a'
-}]
+}];
 
 let biggerThanLuke = (data) => {
-  // Solution code here...
+  console.log(data);
+  if (data === []) {
+    let biggerNames = [];
+    let target = parseInt(data[0].mass);
+    data.map(person => {
+      if (parseInt(person.mass) > target) {
+        biggerNames.push(person.name);
+      }
+    })
+    return biggerNames.join(' - ');
+  } else return '';
+
 }
 
 /*------------------------------------------------------------------------------------------------
@@ -110,6 +119,16 @@ Which could be sorted by name or price.
 
 const sortBy = (property, objs) => {
   // Solution code here...
+
+
+  if (property === 'price') {
+    objs.sort((a, b) => Number(a[property]) - Number(b[property]))
+  } else {
+    objs.sort((a, b) => a[property] > b[property]);
+  }
+
+  return objs;
+
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -172,43 +191,43 @@ describe('Testing challenge 1', () => {
   });
 });
 
-// describe('Testing challenge 2', () => {
-//   test('It should return only characters that are bigger than Luke', () => {
-//     expect(biggerThanLuke(starWarsData)).toStrictEqual('Darth Vader - Pex Kylar');
-//     expect(biggerThanLuke([])).toStrictEqual('');
-//   });
-// });
+describe('Testing challenge 2', () => {
+  test('It should return only characters that are bigger than Luke', () => {
+    expect(biggerThanLuke(starWarsData)).toStrictEqual('Darth Vader - Pex Kylar');
+    expect(biggerThanLuke([])).toStrictEqual('');
+  });
+});
 
-// describe('Testing challenge 3', () => {
-//   test('It should sort items by a price', () => {
+describe('Testing challenge 3', () => {
+  test('It should sort items by a price', () => {
 
-//     expect(sortBy('price', [
-//       { name: 'Sweatshirt', price: 45 },
-//       { name: 'Bookmark', price: 2.50 },
-//       { name: 'Tote bag', price: 15 }
-//     ])).toStrictEqual([
-//       { name: 'Bookmark', price: 2.50 },
-//       { name: 'Tote bag', price: 15 },
-//       { name: 'Sweatshirt', price: 45 },
-//     ]);
+    expect(sortBy('price', [
+      { name: 'Sweatshirt', price: 45 },
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Tote bag', price: 15 }
+    ])).toStrictEqual([
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Tote bag', price: 15 },
+      { name: 'Sweatshirt', price: 45 },
+    ]);
 
-//   });
+  });
 
-//   test('It should sort items by name', () => {
+  test('It should sort items by name', () => {
 
-//     expect(sortBy('name', [
-//       { name: 'Sweatshirt', price: 45 },
-//       { name: 'Bookmark', price: 2.50 },
-//       { name: 'Tote bag', price: 15 }
-//     ])).toStrictEqual([
-//       { name: 'Bookmark', price: 2.50 },
-//       { name: 'Sweatshirt', price: 45 },
-//       { name: 'Tote bag', price: 15 },
-//     ]);
+    expect(sortBy('name', [
+      { name: 'Sweatshirt', price: 45 },
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Tote bag', price: 15 }
+    ])).toStrictEqual([
+      { name: 'Bookmark', price: 2.50 },
+      { name: 'Sweatshirt', price: 45 },
+      { name: 'Tote bag', price: 15 },
+    ]);
 
-//   });
+  });
 
-// });
+});
 
 // describe('Testing challenge 4', () => {
 //   test('It should return true if there are three in a row', () => {
