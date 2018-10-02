@@ -28,10 +28,16 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
+  const cookieTotals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+  stores.forEach((value1, index1) => {
+    let tempArray = stores[index1];
+    tempArray.forEach((value2, index2) => {
+      cookieTotals[index2] = cookieTotals[index2] + value2;
+    });
+  });
+  return cookieTotals;
 }
-
-
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 2
@@ -46,6 +52,17 @@ const grandTotal = (stores) => {
 
 const salesData = (hours, data) => {
   // Solution code here...
+
+  const salesArray = []
+  hours.forEach((value, index) => {
+    let salesObject = {
+      sales: `${data[index]} cookies`,
+      time: `${hours[index]}`
+    }
+    salesArray.push(salesObject);
+  })
+
+  return salesArray;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -62,7 +79,20 @@ const salesData = (hours, data) => {
 
 const giveValentines = (list) => {
   // Solution code here...
+
+  const messageArray = [];
+
+  list.forEach((value, index, array) => {
+    for (let i = 0; i < array.length; i++) {
+      if (value !== array[i]) {
+        messageArray.push(`${value} gives a Valentine to ${array[i]}.`);
+      }
+    }
+  });
+  return messageArray;
 };
+
+
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 4
@@ -71,10 +101,24 @@ const giveValentines = (list) => {
 // Hint: refresh on how to access elements at a specific index in an array.
 // ------------------------------------------------------------------------------------------------
 
-const nestedArray = [ [ [1, 2, 3], [4, 5, 6] ], [ [7, 8, 9], [10, 11, 12] ], [ [13, 14, 15], [16, 17, 18] ] ];
+const nestedArray = [[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]], [[13, 14, 15], [16, 17, 18]]];
 
 const findFourteen = (array) => {
   // Solution code here...
+
+  let hostArray = [];
+  let tempIndex, requestedNumber = 0;
+
+  array.forEach((value, index) => {
+    value.forEach((value2, index2) => {
+      if (array[index][index2].includes(14)) {
+        hostArray = array[index][index2];
+        tempIndex = array[index][index2].indexOf(14);
+        requestedNumber = hostArray[tempIndex];
+      }
+    })
+  })
+  return requestedNumber;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -85,19 +129,35 @@ const findFourteen = (array) => {
 // ------------------------------------------------------------------------------------------------
 
 const errands = [
-  { store: 'Grocery store',
-    items: [ { name: 'Eggs', quantity: 12 }, { name: 'Milk', quantity: 1 }, { name: 'Apples', quantity: 3 }]
+  {
+    store: 'Grocery store',
+    items: [{ name: 'Eggs', quantity: 12 },
+    { name: 'Milk', quantity: 1 },
+    { name: 'Apples', quantity: 3 }]
   },
-  { store: 'Drug store',
-    items: [ { name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash',quantity: 1 } ]
+  {
+    store: 'Drug store',
+    items: [{ name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash', quantity: 1 }]
   },
-  { store: 'Pet store',
-    items: [ { name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 } ]
+  {
+    store: 'Pet store',
+    items: [{ name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 }]
   }
 ]
 
 const howManyTreats = (arr) => {
   // Solution code here...
+  let numberOfTreats = 0;
+
+  arr.forEach((value, index) => {
+    const targetItems = value.items;
+    targetItems.forEach((value2, index2) => {
+      if (targetItems[index2].name === 'Treats') {
+        numberOfTreats += targetItems[index2].quantity
+      }
+    })
+  })
+  return numberOfTreats;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -120,6 +180,15 @@ const howManyTreats = (arr) => {
 
 const battleship = (board, row, col) => {
   //  Solution code here...
+
+  let success = '';
+
+  if (board[row][col] === "#") {
+    success = 'hit';
+  } else {
+    success = 'miss'
+  }
+  return success;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -134,6 +203,16 @@ const battleship = (board, row, col) => {
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+
+  let result = 1;
+
+  numbers.forEach((value, index) => {
+    for (let i = 0; i < value.length; i++) {
+      result *= value[i];
+    }
+  });
+
+  return result;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -155,6 +234,21 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+
+  let averageTemp = 0;
+  let totalDays = 0;
+
+  weather.forEach((value, index) => {
+    for (let i = 0; i < value.length; i++) {
+      totalDays++;
+      averageTemp += value[i];
+    }
+  })
+
+  averageTemp = averageTemp / totalDays;
+
+  return averageTemp;
+
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -177,6 +271,25 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let averageTemp = 0;
+  let totalDays = 0;
+  let lowestWeek = 200;
+
+  weather.forEach((value, index) => {
+    for (let i = 0; i < value.length; i++) {
+      totalDays++;
+      averageTemp += value[i];
+    }
+
+    averageTemp = averageTemp / totalDays;
+
+    if (averageTemp < lowestWeek) {
+      lowestWeek = averageTemp;
+    }
+    averageTemp = 0
+    totalDays = 0;
+  })
+  return lowestWeek;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -206,6 +319,28 @@ const lowestWeeklyAverage = (weather) => {
 
 const excel = (str) => {
   // Solution code here...
+
+  // Here's an algorithm you can use:
+  //
+  // create an empty array to store the sum value of each row
+
+  const numberArray = [];
+
+  // split the input string on newline "\n" characters
+
+
+  //
+  // use a for loop to iterate over each row
+  //   initialize a variable to store the row sum as zero
+  //   split the row string on commas "," to get an array of column values
+  //   use a for loop to iterate over each column value
+  //     use parseInt() to convert each column string to a number
+  //     add the number to the total for the row
+  //   push the row total onto the very first array
+  // return the array with all the row sums
+
+
+
 }
 
 
@@ -275,21 +410,25 @@ describe('Testing challenge 3', () => {
   });
 });
 
+// FIXME:  If you pass a request for the number in question ( e.g. findFourteen(nestedArray,numberToFind) ), then the code could be written to meet any input array.  The instructions, however, ask only to find the number 14, so it will fail everytime.  
+
 describe('Testing challenge 4', () => {
   test('It should return the number 14', () => {
     expect(findFourteen(nestedArray)).toStrictEqual(14);
   });
   test('It should also work for other input arrays', () => {
-    expect(findFourteen([[], [], [[0,1,2]]])).toStrictEqual(1);
+    expect(findFourteen([[], [], [[0, 1, 2]]])).toStrictEqual(1);
   })
 });
+
+// FIXME:  It would appear that the array being passed in part 2 of the test doesn't contain enough information to process based on a requirment for treats.
 
 describe('Testing challenge 5', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
   test('It should also work for other arrays of objects', () => {
-    expect(howManyTreats([0,0,{items: [0, {quantity: 7}]}])).toStrictEqual(7);
+    expect(howManyTreats([0, 0, { items: [0, { quantity: 7 }] }])).toStrictEqual(7);
   })
 });
 
@@ -314,14 +453,14 @@ describe('Testing challenge 6', () => {
 
 describe('Testing challenge 7', () => {
   test('It should multiply all the numbers together', () => {
-    expect(calculateProduct([[1,2], [3,4], [5,6]])).toStrictEqual(720);
+    expect(calculateProduct([[1, 2], [3, 4], [5, 6]])).toStrictEqual(720);
   });
 
   test('It should return zero if there are any zeroes in the data', () => {
     expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
   });
   test('It should work even if some of the arrays contain no numbers', () => {
-    expect(calculateProduct([[1,2], [], [3,4,5]])).toStrictEqual(120);
+    expect(calculateProduct([[1, 2], [], [3, 4, 5]])).toStrictEqual(120);
   });
 });
 
